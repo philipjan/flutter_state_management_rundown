@@ -37,12 +37,13 @@ class HomePage extends ConsumerWidget {
           child: Column(
             children: [
               Text(
-                ref.watch(riverPodCountState).toString(),
+                // ref.watch(riverPodCountState).toString(),
+                ref.watch(counterProvider).toString(),
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
               ElevatedButton.icon(
                   onPressed: () {
-                    ref.read(riverPodCountState.notifier).state++;
+                    ref.read(counterProvider.notifier).increment();
                   },
                 icon: const Icon(Icons.add),
                 label: const Text("Add"),
@@ -52,7 +53,7 @@ class HomePage extends ConsumerWidget {
 
               ElevatedButton.icon(
                 onPressed: () {
-                  ref.read(riverPodCountState.notifier).state--;
+                  ref.read(counterProvider.notifier).decrement();
                 },
                 icon: const Icon(Icons.remove),
                 label: const Text("Remove"),
