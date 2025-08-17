@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:cubitbloc/config/environment.dart';
-import 'package:cubitbloc/widget/widget_list_item.dart';
+import 'package:cubitbloc/route/app_router.dart';
+import 'package:cubitbloc/ui/page/page_todo_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,7 +24,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomePage());
+    final MyAppRouter _router = MyAppRouter();
+    return MaterialApp.router(
+      routerConfig: _router.router
+    );
   }
 }
 
@@ -33,14 +37,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text("TODO async Riverpod"), centerTitle: true),
-        body: Center(
-          child: ListView.builder(
-            itemBuilder: (ctx, index) => TodoItem(key: Key(index.toString())),
-          ),
-        ),
-      ),
+      home: TodoListScreen(),
     );
   }
 }
